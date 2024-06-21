@@ -6,57 +6,55 @@ class FifthScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          // backgroundColor: Colors.transparent, // Make app bar transparent
-          // elevation: 0,
-          // automaticallyImplyLeading: false, // Remove back icon
-          ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                RichText(
-                  text: TextSpan(
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: 'Read',
+            Padding(
+              padding: const EdgeInsets.only(top: 40.0), // Add top padding here
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'Read',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                          text: 'ify',
+                          style: TextStyle(
+                              color: Colors.greenAccent,
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        '@ariaimdaria',
                         style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold),
+                          fontSize: 16,
+                          color: Colors.grey,
+                        ),
                       ),
-                      TextSpan(
-                        text: 'ify',
-                        style: TextStyle(
-                            color: Colors.greenAccent,
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold),
+                      SizedBox(width: 8),
+                      CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSaWrCwYqgtGbUaGgyYzmsPonCfpdYRYOt6uIyNZZTLiVZFJ772'), // Replace with actual profile image URL
+                        radius: 24,
                       ),
                     ],
                   ),
-                ),
-                Row(
-                  children: [
-                    Text(
-                      '@ariaimdaria',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    SizedBox(width: 8),
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSaWrCwYqgtGbUaGgyYzmsPonCfpdYRYOt6uIyNZZTLiVZFJ772'), // Replace with actual profile image URL
-                      radius: 24,
-                    ),
-                  ],
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(height: 20),
             _buildStoryCard(

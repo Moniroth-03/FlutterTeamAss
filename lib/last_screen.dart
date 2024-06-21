@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_team_assignment/fifth_sreen.dart';
+import 'package:flutter_team_assignment/fifth_screen.dart';
 import 'package:flutter_team_assignment/fourth_screen.dart';
+import 'package:flutter_team_assignment/settings_screen.dart';
 
 class LastScreen extends StatelessWidget {
   @override
@@ -23,6 +24,11 @@ class LastScreen extends StatelessWidget {
                       IconButton(
                         icon: Icon(Icons.settings, color: Colors.black),
                         onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SettingsScreen(),
+                              ));
                           // Handle settings press
                         },
                       ),

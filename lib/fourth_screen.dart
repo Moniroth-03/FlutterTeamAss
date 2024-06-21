@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_team_assignment/fifth_sreen.dart';
-import 'package:flutter_team_assignment/home_screen.dart';
+import 'package:flutter_team_assignment/fifth_screen.dart';
 import 'package:flutter_team_assignment/last_screen.dart';
 
 class FourthScreen extends StatelessWidget {
@@ -12,7 +11,35 @@ class FourthScreen extends StatelessWidget {
       length: 2, // Number of tabs
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Readify'),
+          automaticallyImplyLeading: false,
+          title: Padding(
+            padding: const EdgeInsets.only(top: 20.0), // Add top padding here
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                RichText(
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'Read',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                        text: 'ify',
+                        style: TextStyle(
+                            color: Colors.greenAccent,
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
           bottom: const TabBar(
             indicatorColor: Colors.greenAccent,
             labelColor: Colors.greenAccent,
@@ -45,7 +72,7 @@ class FourthScreen extends StatelessWidget {
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
-                label: 'true',
+                label: '',
               ),
             ],
             currentIndex: 1,
@@ -56,12 +83,9 @@ class FourthScreen extends StatelessWidget {
             onTap: (index) {
               // Handle bottom navigation tap
               if (index == 0) {
-                // Navigator.push(context,
-                // ,MaterialPageRoute(builder: (context) => HomeScreen(),))
-
                 // Navigate to home screen
               } else if (index == 1) {
-                // Navigate to library screen
+                // Stay on the current screen
               } else if (index == 2) {
                 Navigator.push(
                     context,
@@ -75,7 +99,7 @@ class FourthScreen extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => LastScreen(),
                     ));
-                // Stay on the current screen
+                // Navigate to profile screen
               }
             }),
       ),
@@ -231,7 +255,6 @@ class ReadingListCard extends StatelessWidget {
               ),
             ),
           ),
-
           SizedBox(width: 12.0), // Adds spacing between image and text
           Expanded(
             child: Padding(
