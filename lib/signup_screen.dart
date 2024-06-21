@@ -10,7 +10,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-    bool _obscureText = true;
+  bool _obscureText = true;
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -24,18 +24,17 @@ class _SignupScreenState extends State<SignupScreen> {
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
-        child:  Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-           RichText(
-            text: const
-             TextSpan(
-              style: TextStyle(
-                 fontSize: 48.0, // Adjust size as needed
+            RichText(
+              text: const TextSpan(
+                style: TextStyle(
+                  fontSize: 48.0, // Adjust size as needed
                   fontWeight: FontWeight.bold,
-              ),
-               children: <TextSpan>[
+                ),
+                children: <TextSpan>[
                   TextSpan(
                     text: 'Read',
                     style: TextStyle(color: Colors.black),
@@ -46,7 +45,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         color: Color(0xFF00D6A3)), // Adjust color as needed
                   ),
                 ],
-            ),
+              ),
             ),
             const SizedBox(height: 8.0),
             const Text(
@@ -60,7 +59,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 border: OutlineInputBorder(),
               ),
             ),
-             const SizedBox(height: 24.0),
+            const SizedBox(height: 24.0),
             TextField(
               decoration: InputDecoration(
                 labelText: 'Enter your Email',
@@ -97,22 +96,23 @@ class _SignupScreenState extends State<SignupScreen> {
             ),
             const SizedBox(height: 24.0),
             ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ThirdScreen()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF00D6A3), // Button color
-                minimumSize: Size(double.infinity, 50), // Full-width button
-              ),
-              child: const Text('Sign up'),
-            ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ThirdScreen()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF00D6A3), // Button color
+                  minimumSize: Size(double.infinity, 50), // Full-width button
+                ),
+                child: const Text(
+                  'Sign up',
+                  style: TextStyle(color: Colors.white),
+                )),
           ],
         ),
       ),
     );
-
   }
 }

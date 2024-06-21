@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_team_assignment/fifth_sreen.dart';
+import 'package:flutter_team_assignment/home_screen.dart';
+import 'package:flutter_team_assignment/last_screen.dart';
 
 class FourthScreen extends StatelessWidget {
   const FourthScreen({super.key});
@@ -33,7 +36,7 @@ class FourthScreen extends StatelessWidget {
                 label: '',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.book),
+                icon: Icon(Icons.library_books),
                 label: '',
               ),
               BottomNavigationBarItem(
@@ -53,12 +56,25 @@ class FourthScreen extends StatelessWidget {
             onTap: (index) {
               // Handle bottom navigation tap
               if (index == 0) {
+                // Navigator.push(context,
+                // ,MaterialPageRoute(builder: (context) => HomeScreen(),))
+
                 // Navigate to home screen
               } else if (index == 1) {
                 // Navigate to library screen
               } else if (index == 2) {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FifthScreen(),
+                    ));
                 // Navigate to edit screen
               } else if (index == 3) {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LastScreen(),
+                    ));
                 // Stay on the current screen
               }
             }),

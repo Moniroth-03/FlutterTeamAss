@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_team_assignment/fifth_sreen.dart';
+import 'package:flutter_team_assignment/fourth_screen.dart';
 
 class LastScreen extends StatelessWidget {
   @override
@@ -9,7 +11,10 @@ class LastScreen extends StatelessWidget {
           children: [
             Container(
               color: Colors.greenAccent,
-              padding: EdgeInsets.only(top: 30.0, bottom: 20.0,),
+              padding: EdgeInsets.only(
+                top: 30.0,
+                bottom: 20.0,
+              ),
               child: Column(
                 children: [
                   Row(
@@ -108,7 +113,7 @@ class LastScreen extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-icon: Icon(Icons.home),
+            icon: Icon(Icons.home),
             label: '',
           ),
           BottomNavigationBarItem(
@@ -124,7 +129,8 @@ icon: Icon(Icons.home),
             label: '',
           ),
         ],
-        currentIndex: 3, // This is the profile screen, so the profile icon is selected by default
+        currentIndex:
+            3, // This is the profile screen, so the profile icon is selected by default
         selectedItemColor: Color(0xFF00D6A3),
         unselectedItemColor: Colors.grey,
         showSelectedLabels: false,
@@ -134,8 +140,18 @@ icon: Icon(Icons.home),
           if (index == 0) {
             // Navigate to home screen
           } else if (index == 1) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FourthScreen(),
+                ));
             // Navigate to library screen
           } else if (index == 2) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FifthScreen(),
+                ));
             // Navigate to edit screen
           } else if (index == 3) {
             // Stay on the current screen

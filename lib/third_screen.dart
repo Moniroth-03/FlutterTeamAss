@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_team_assignment/fourth_screen.dart';
+import 'signup_screen.dart';
 
 class ThirdScreen extends StatefulWidget {
   @override
@@ -109,6 +111,14 @@ class _ThirdScreenState extends State<ThirdScreen> {
                       color: Color(0xFF00D6A3), // Adjust color as needed
                       fontWeight: FontWeight.bold,
                     ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SignupScreen()),
+                        );
+                      },
                   ),
                 ],
               ),
