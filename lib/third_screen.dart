@@ -82,7 +82,10 @@ class _ThirdScreenState extends State<ThirdScreen> {
                 backgroundColor: Color(0xFF00D6A3), // Button color
                 minimumSize: Size(double.infinity, 50), // Full-width button
               ),
-              child: const Text('Log in'),
+              child: const Text(
+                'Log in',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
             const SizedBox(height: 16.0),
             TextButton(

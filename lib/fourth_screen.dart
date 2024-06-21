@@ -11,6 +11,9 @@ class FourthScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Readify'),
           bottom: const TabBar(
+            indicatorColor: Colors.greenAccent,
+            labelColor: Colors.greenAccent,
+            unselectedLabelColor: Colors.black,
             tabs: [
               Tab(text: 'Your reads'),
               Tab(text: 'Your Reading List'),
@@ -19,25 +22,58 @@ class FourthScreen extends StatelessWidget {
         ),
         body: const TabBarView(
           children: [
-            OfflineReadsView(),
-            Center(
-                child: Text(
-                    'Your Reading List')), // Placeholder for the second tab
+            YourReadsView(),
+            ReadingListView(), // Second tab content
           ],
         ),
+        bottomNavigationBar: BottomNavigationBar(
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.book),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.edit),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: 'true',
+              ),
+            ],
+            currentIndex: 1,
+            selectedItemColor: Color(0xFF00D6A3),
+            unselectedItemColor: Colors.grey,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            onTap: (index) {
+              // Handle bottom navigation tap
+              if (index == 0) {
+                // Navigate to home screen
+              } else if (index == 1) {
+                // Navigate to library screen
+              } else if (index == 2) {
+                // Navigate to edit screen
+              } else if (index == 3) {
+                // Stay on the current screen
+              }
+            }),
       ),
     );
   }
 }
 
-class OfflineReadsView extends StatelessWidget {
-  const OfflineReadsView({super.key});
+class YourReadsView extends StatelessWidget {
+  const YourReadsView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Your first row of widgets here (e.g., header)
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
@@ -52,7 +88,6 @@ class OfflineReadsView extends StatelessWidget {
             ],
           ),
         ),
-        // Expanded widget to make GridView take the remaining space
         Expanded(
           child: GridView.builder(
             padding: const EdgeInsets.all(8.0),
@@ -73,12 +108,37 @@ class OfflineReadsView extends StatelessWidget {
   }
 }
 
+class ReadingListView extends StatelessWidget {
+  const ReadingListView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      padding: const EdgeInsets.all(8.0),
+      itemCount: readingList.length,
+      itemBuilder: (context, index) {
+        return ReadingListCard(item: readingList[index]);
+      },
+    );
+  }
+}
+
 class Book {
   final String title;
   final String author;
   final String imagePath;
 
   Book(this.title, this.author, this.imagePath);
+}
+
+class ReadingListItem {
+  final String title;
+  final String description;
+  final String imagePath;
+  final String storiesCount;
+
+  ReadingListItem(
+      this.title, this.description, this.imagePath, this.storiesCount);
 }
 
 class BookCard extends StatelessWidget {
@@ -93,9 +153,7 @@ class BookCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
-            // Wrap the image with ClipRRect
-            borderRadius:
-                BorderRadius.circular(8.0), // Set desired corner radius
+            borderRadius: BorderRadius.circular(8.0),
             child: Container(
               width: double.infinity,
               child: Image.network(
@@ -104,7 +162,7 @@ class BookCard extends StatelessWidget {
                 height: 100.0,
                 alignment: Alignment.center,
                 errorBuilder: (context, error, stackTrace) {
-                  return Center(child: Text('Error loading image'));
+                  return const Center(child: Text('Error loading image'));
                 },
               ),
             ),
@@ -130,7 +188,67 @@ class BookCard extends StatelessWidget {
   }
 }
 
-// Example book list
+class ReadingListCard extends StatelessWidget {
+  final ReadingListItem item;
+
+  const ReadingListCard({required this.item});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 12.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0), // Adjust padding as needed
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.network(
+                item.imagePath,
+                fit: BoxFit.cover,
+                width: 100.0,
+                height: 120.0,
+                errorBuilder: (context, error, stackTrace) {
+                  return const Center(child: Text('Error loading image'));
+                },
+              ),
+            ),
+          ),
+
+          SizedBox(width: 12.0), // Adds spacing between image and text
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0), // Adjust padding as needed
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    item.title,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 14.0),
+                  ),
+                  SizedBox(height: 4.0),
+                  Text(
+                    item.description,
+                    style: TextStyle(fontSize: 12.0),
+                  ),
+                  SizedBox(height: 4.0),
+                  Text(
+                    item.storiesCount,
+                    style: TextStyle(fontSize: 10.0),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Icon(Icons.more_vert), // Moves the icon to the right side
+        ],
+      ),
+    );
+  }
+}
+
 final List<Book> books = [
   Book('Regret', 'Jeong Jaehyun',
       'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/20231006_Jaehyun_%28NCT%29.jpg/800px-20231006_Jaehyun_%28NCT%29.jpg'),
@@ -144,4 +262,37 @@ final List<Book> books = [
       'https://img.freepik.com/free-photo/side-view-anime-girl-hugging-cat_23-2150970943.jpg?t=st=1718155875~exp=1718159475~hmac=7b7b1d4b223ee26164351d2c0f8da44e78010642faa13dfd541abfec25aca8cf&w=1060'),
   Book('My dear fanfics', 'Unknown',
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgq2m_BRuDp_3mMi7oS_7aU_nQBy7gJYWY5g&s'),
+];
+
+final List<ReadingListItem> readingList = [
+  ReadingListItem(
+    'My favorite hopeless romantic stories',
+    'It\'s a deeply moving stories about young love and dealing with difficult circumstances.',
+    'https://img.freepik.com/premium-vector/sketch-young-couple-love-line-art-minimalist-style-modern-art_348404-495.jpg?w=740',
+    '8 stories in total',
+  ),
+  ReadingListItem(
+    'My first ever thrilling stories',
+    'I am not a typical person who enjoys reading something thrilling but this one made me addict.',
+    'https://preview.redd.it/jaehyun-nct-you-will-die-in-6-hours-movie-teaser-poster-v0-4uiabnluxfxc1.jpeg?width=1080&crop=smart&auto=webp&s=9975d8f2bac866282424eecad7cb271510029d9d',
+    '1 story in total',
+  ),
+  ReadingListItem(
+    'My favorite comedy stories',
+    'The quirky characters and funny plot twists make it an enjoyable and turning read.',
+    'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQdPzI9Z5oX62T89uk3DNa6W3rp-lE3nMd0CZMLvaM2oe_QEiSd',
+    '5 stories in total',
+  ),
+  ReadingListItem(
+    'My favorite Sci-Fi stories',
+    'The intriguing exploration of gender and culture on a distant planet that makes it a unique and compelling read.',
+    'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR5YpWlos-wxTdsHAPU6WyFuhBCdASe1XbGDiFu0fkgatthuYLg',
+    '3 stories in total',
+  ),
+  ReadingListItem(
+    'My favorite Sci-Fi stories',
+    'The intriguing exploration of gender and culture on a distant planet that makes it a unique and compelling read.',
+    'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR5YpWlos-wxTdsHAPU6WyFuhBCdASe1XbGDiFu0fkgatthuYLg',
+    '3 stories in total',
+  ),
 ];
