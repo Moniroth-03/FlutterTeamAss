@@ -43,7 +43,7 @@ class SecondScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 18.0),
               ),
               const Text(
-                'Please choose a language!',
+                'Please choose a language',
                 style: TextStyle(color: Colors.white, fontSize: 18.0),
               ),
               const SizedBox(height: 32.0),
